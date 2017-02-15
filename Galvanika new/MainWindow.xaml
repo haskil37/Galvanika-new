@@ -1,0 +1,174 @@
+﻿<Window x:Class="Galvanika_new.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Galvanika_new"
+        mc:Ignorable="d"
+        Title="Гальваника" Height="600" Width="800">
+    <Grid>
+        <Grid x:Name="testWindow" Margin="0,35,0,0" Height="200" VerticalAlignment="Top" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.RowSpan="10" Stroke="black" Fill="Transparent" Margin="2,0,2,-5" />
+                <Rectangle Grid.Column="1" Grid.RowSpan="10" Stroke="black" Fill="Transparent" Margin="2,0,2,-5" />
+                <Rectangle Grid.Column="2" Grid.RowSpan="10" Stroke="black" Fill="Transparent" Margin="2,0,2,-5" />
+                <Rectangle Grid.Column="3" Grid.RowSpan="10" Stroke="black" Fill="Transparent" Margin="2,0,2,-5" />
+
+                <Label x:Name="Input1" Grid.Column="0" Content="Вход 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Input2" Grid.Column="1" Content="Вход 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Input3" Grid.Column="2" Content="Вход 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Input4" Grid.Column="3" Content="Вход 4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+                <CheckBox x:Name="Input4Bit0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit3" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit4" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit6" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit7" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                <CheckBox x:Name="Input3Bit0" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit1" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit2" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit4" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit5" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit6" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                <CheckBox x:Name="Input2Bit0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit1" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit2" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit3" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit4" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit5" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit6" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit7" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
+                <CheckBox x:Name="Input1Bit0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit1" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit2" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit3" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit4" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit5" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit6" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit7" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,7,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.Row="0" Stroke="black" Fill="Transparent" Margin="1,0"/>
+                <Rectangle Grid.Column="1" Grid.Row="0" Stroke="black" Fill="Transparent" Margin="1,0" />
+                <Rectangle Grid.Column="2" Grid.Row="0" Stroke="black" Fill="Transparent" Margin="1,0" />
+                <Rectangle Grid.Column="0" Grid.Row="1" Stroke="black" Fill="Transparent" Margin="1,2,1,0" />
+                <Rectangle Grid.Column="1" Grid.Row="1" Stroke="black" Fill="Transparent" Margin="1,2,1,0"/>
+                <Rectangle Grid.Column="2" Grid.Row="1" Stroke="black" Fill="Transparent" Margin="1,2,1,0" />
+
+                <Label x:Name="Output1" Grid.Column="0" Content="Выход 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Output2" Grid.Column="1" Content="Выход 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Output3" Grid.Column="2" Content="Выход 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <CheckBox x:Name="Output3Bit0" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <CheckBox x:Name="Output3Bit1" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <CheckBox x:Name="Output3Bit2" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="35,0,0,0" />
+                <CheckBox x:Name="Output3Bit3" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="50,0,0,0" />
+                <CheckBox x:Name="Output3Bit4" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="65,0,0,0" />
+                <CheckBox x:Name="Output3Bit5" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="80,0,0,0" />
+                <CheckBox x:Name="Output3Bit6" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="95,0,0,0" />
+                <CheckBox x:Name="Output3Bit7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="110,0,0,0" />
+
+
+                <CheckBox x:Name="Output2Bit0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <CheckBox x:Name="Output2Bit1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <CheckBox x:Name="Output2Bit2" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="35,0,0,0" />
+                <CheckBox x:Name="Output2Bit3" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="50,0,0,0" />
+                <CheckBox x:Name="Output2Bit4" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="65,0,0,0" />
+                <CheckBox x:Name="Output2Bit5" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="80,0,0,0" />
+                <CheckBox x:Name="Output2Bit6" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="95,0,0,0" />
+                <CheckBox x:Name="Output2Bit7" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="110,0,0,0" />
+
+
+                <CheckBox x:Name="Output1Bit0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <CheckBox x:Name="Output1Bit1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <CheckBox x:Name="Output1Bit2" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="35,0,0,0" />
+                <CheckBox x:Name="Output1Bit3" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="50,0,0,0" />
+                <CheckBox x:Name="Output1Bit4" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="65,0,0,0" />
+                <CheckBox x:Name="Output1Bit5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="80,0,0,0" />
+                <CheckBox x:Name="Output1Bit6" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="95,0,0,0" />
+                <CheckBox x:Name="Output1Bit7" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="110,0,0,0" />
+
+            </Grid>
+        </Grid>
+
+        <DataGrid x:Name="memoryGrid" Margin="10,35,10,10" RowHeaderWidth="0" CanUserReorderColumns="False" AutoGenerateColumns="false" CanUserSortColumns="False" IsReadOnly="True" CanUserResizeRows="False" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Visibility="Collapsed">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Address" Header="Адрес" Width="1*" Binding="{Binding Address}"/>
+                <DataGridTextColumn x:Name="NameVariable" Header="Название переменной" Binding="{Binding NameVariable}" Width="2*" />
+                <DataGridTextColumn x:Name="Type" Header="Тип переменной" Width="1*" Binding="{Binding Type}"/>
+                <DataGridTextColumn x:Name="Value" Header="Начальное значение" Width="1*" Binding="{Binding Value}"/>
+                <DataGridTextColumn x:Name="CurrentValue" Header="Текущее значение" Width="1*" Binding="{Binding CurrentValue}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="timerGrid" Margin="10,35,10,10" RowHeaderWidth="0" CanUserReorderColumns="False" AutoGenerateColumns="false" CanUserSortColumns="False" IsReadOnly="True" CanUserResizeRows="False" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Visibility="Collapsed">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="AddressTimer" Header="Адрес" Width="0.5*" Binding="{Binding Address}"/>
+                <DataGridTextColumn x:Name="Time" Header="Время" Binding="{Binding Time}" Width="1*" />
+                <DataGridTextColumn x:Name="EndTime" Header="Длительность" Width="1*" Binding="{Binding EndTime}"/>
+                <DataGridTextColumn x:Name="ValueTimer" Header="Значение" Width="0.5*" Binding="{Binding Value}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="dataGrid" Margin="10,35,10,10" RowHeaderWidth="0" CanUserReorderColumns="False" AutoGenerateColumns="false" CanUserSortColumns="False" IsReadOnly="True" CanUserResizeRows="False" ClipToBounds="True" SnapsToDevicePixels="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Key" CanUserSort="False" Visibility="Hidden" Binding="{Binding Key}"/>
+                <DataGridTextColumn x:Name="Code" Header="Код программы" CanUserSort="False" Width="1*" Binding="{Binding Code}"/>
+                <DataGridTextColumn x:Name="Operator" CanUserSort="False" Visibility="Hidden" Binding="{Binding Operator}"/>
+                <DataGridTextColumn x:Name="AEM" CanUserSort="False" Visibility="Hidden" Binding="{Binding AEM}"/>
+                <DataGridTextColumn x:Name="Bit" CanUserSort="False" Visibility="Hidden" Binding="{Binding Bit}"/>
+                <DataGridTextColumn x:Name="Input" Header="Входные данные" CanUserSort="False" Width="0.5*" Binding="{Binding Input}"/>
+                <DataGridTextColumn x:Name="Marker" Header="Маркер" CanUserSort="False"  Width="0.5*" Binding="{Binding Marker}"/>
+                <DataGridTextColumn x:Name="Output" Header="Выходные данные" CanUserSort="False" Width="0.5*" Binding="{Binding Output}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button_DB" Content="Показать память" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="107" Click="showDBTimer" />
+        <Button x:Name="button_Timer" Content="Показать таймеры" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top" Width="110" Click="showDBTimer" />
+        <Button x:Name="button_testWindow" Content="Показать" HorizontalAlignment="Left" Margin="241,10,0,0" VerticalAlignment="Top" Width="110" Click="showDBTimer" />
+        <Label Content="Количество прогонов:" Margin="0,4,124,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Label x:Name="reads"  Margin="0,4,26,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+    </Grid>    
+</Window>
