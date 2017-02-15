@@ -10,7 +10,7 @@
         <Grid x:Name="testWindow" Margin="0,35,0,0" Height="200" VerticalAlignment="Top" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.45*"/>
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -20,7 +20,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1.7*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -42,44 +42,44 @@
                 <Label x:Name="Input4" Grid.Column="3" Content="Вход 4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                <CheckBox x:Name="Input4Bit0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit3" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit4" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit6" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input4Bit7" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input4Bit0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="0" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="1" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="2" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit3" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="3" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit4" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="4" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="5" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit6" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="6" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input4Bit7" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="7" Checked="InputBit_Checked" />
 
 
-                <CheckBox x:Name="Input3Bit0" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit1" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit2" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit4" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit5" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit6" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input3Bit7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input3Bit0" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="0" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit1" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="1" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit2" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="2" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="3" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit4" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="4" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit5" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="5" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit6" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="6" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input3Bit7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="7" Checked="InputBit_Checked" />
 
 
-                <CheckBox x:Name="Input2Bit0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit1" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit2" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit3" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit4" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit5" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit6" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input2Bit7" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input2Bit0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="0" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit1" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="1" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit2" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="2" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit3" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="3" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit4" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="4" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit5" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="5" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit6" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="6" Checked="InputBit_Checked"/>
+                <CheckBox x:Name="Input2Bit7" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="7" Checked="InputBit_Checked"/>
 
 
-                <CheckBox x:Name="Input1Bit0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit1" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit2" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit3" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit4" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit5" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit6" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <CheckBox x:Name="Input1Bit7" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox x:Name="Input1Bit0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="0" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit1" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="1" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit2" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="2" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit3" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="3" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit4" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="4" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit5" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="5" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit6" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="6" Checked="InputBit_Checked" />
+                <CheckBox x:Name="Input1Bit7" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="7" Checked="InputBit_Checked" />
 
             </Grid>
             <Grid Grid.Row="1" Margin="0,7,0,0">
@@ -89,8 +89,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.25*"/>
                 </Grid.RowDefinitions>
 
                 <Rectangle Grid.Column="0" Grid.Row="0" Stroke="black" Fill="Transparent" Margin="1,0"/>
@@ -100,39 +100,94 @@
                 <Rectangle Grid.Column="1" Grid.Row="1" Stroke="black" Fill="Transparent" Margin="1,2,1,0"/>
                 <Rectangle Grid.Column="2" Grid.Row="1" Stroke="black" Fill="Transparent" Margin="1,2,1,0" />
 
-                <Label x:Name="Output1" Grid.Column="0" Content="Выход 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label x:Name="Output2" Grid.Column="1" Content="Выход 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label x:Name="Output3" Grid.Column="2" Content="Выход 3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="Output1" Grid.Column="0" Content="Выход 1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-2,0,0"/>
+                <Label x:Name="Output2" Grid.Column="1" Content="Выход 2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-2,0,0"/>
+                <Label x:Name="Output3" Grid.Column="2" Content="Выход 3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-2,0,0"/>
 
-                <CheckBox x:Name="Output3Bit0" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0" />
-                <CheckBox x:Name="Output3Bit1" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="20,0,0,0" />
-                <CheckBox x:Name="Output3Bit2" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="35,0,0,0" />
-                <CheckBox x:Name="Output3Bit3" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="50,0,0,0" />
-                <CheckBox x:Name="Output3Bit4" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="65,0,0,0" />
-                <CheckBox x:Name="Output3Bit5" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="80,0,0,0" />
-                <CheckBox x:Name="Output3Bit6" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="95,0,0,0" />
-                <CheckBox x:Name="Output3Bit7" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="110,0,0,0" />
-
-
-                <CheckBox x:Name="Output2Bit0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" />
-                <CheckBox x:Name="Output2Bit1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" />
-                <CheckBox x:Name="Output2Bit2" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="35,0,0,0" />
-                <CheckBox x:Name="Output2Bit3" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="50,0,0,0" />
-                <CheckBox x:Name="Output2Bit4" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="65,0,0,0" />
-                <CheckBox x:Name="Output2Bit5" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="80,0,0,0" />
-                <CheckBox x:Name="Output2Bit6" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="95,0,0,0" />
-                <CheckBox x:Name="Output2Bit7" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="110,0,0,0" />
-
-
-                <CheckBox x:Name="Output1Bit0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0" />
-                <CheckBox x:Name="Output1Bit1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" />
-                <CheckBox x:Name="Output1Bit2" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="35,0,0,0" />
-                <CheckBox x:Name="Output1Bit3" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="50,0,0,0" />
-                <CheckBox x:Name="Output1Bit4" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="65,0,0,0" />
-                <CheckBox x:Name="Output1Bit5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="80,0,0,0" />
-                <CheckBox x:Name="Output1Bit6" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="95,0,0,0" />
-                <CheckBox x:Name="Output1Bit7" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="110,0,0,0" />
-
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="Output3Bit0"  Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output3Bit1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output3Bit2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output3Bit3"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output3Bit4"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output3Bit5"  Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output3Bit6"  Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output3Bit7"  Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"  />
+                    <Label Grid.Column="0" VerticalAlignment="Bottom" Content="0" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="1" VerticalAlignment="Bottom" Content="1" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="2" VerticalAlignment="Bottom" Content="2" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="3" VerticalAlignment="Bottom" Content="3" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="4" VerticalAlignment="Bottom" Content="4" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="5" VerticalAlignment="Bottom" Content="5" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="6" VerticalAlignment="Bottom" Content="6" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="7" VerticalAlignment="Bottom" Content="7" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="Output2Bit0"  Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output2Bit1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output2Bit2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output2Bit3"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output2Bit4"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output2Bit5"  Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output2Bit6"  Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output2Bit7"  Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"  />
+                    <Label Grid.Column="0" VerticalAlignment="Bottom" Content="0" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="1" VerticalAlignment="Bottom" Content="1" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="2" VerticalAlignment="Bottom" Content="2" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="3" VerticalAlignment="Bottom" Content="3" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="4" VerticalAlignment="Bottom" Content="4" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="5" VerticalAlignment="Bottom" Content="5" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="6" VerticalAlignment="Bottom" Content="6" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="7" VerticalAlignment="Bottom" Content="7" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="Output1Bit0"  Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output1Bit1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output1Bit2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output1Bit3"  Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output1Bit4"  Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"/>
+                    <CheckBox x:Name="Output1Bit5"  Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output1Bit6"  Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0" />
+                    <CheckBox x:Name="Output1Bit7"  Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-9,0,0"  />
+                    <Label Grid.Column="0" VerticalAlignment="Bottom" Content="0" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="1" VerticalAlignment="Bottom" Content="1" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="2" VerticalAlignment="Bottom" Content="2" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="3" VerticalAlignment="Bottom" Content="3" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="4" VerticalAlignment="Bottom" Content="4" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="5" VerticalAlignment="Bottom" Content="5" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="6" VerticalAlignment="Bottom" Content="6" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                    <Label Grid.Column="7" VerticalAlignment="Bottom" Content="7" HorizontalAlignment="Center" Margin="0,5,0,-5"></Label>
+                </Grid>
             </Grid>
         </Grid>
 

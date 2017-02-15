@@ -935,5 +935,39 @@ namespace Galvanika_new
                 Output3Bit7.IsChecked = false;
         }
 
+        private void InputBit_Checked(object sender, RoutedEventArgs e)
+        {
+            var value = sender as CheckBox;
+            int editBit;
+            var temp = value.Name.Replace("Input", "");
+            temp = temp.Replace("Bit", "");
+            var adress = (int)Char.GetNumericValue(temp[0])-1;
+            int InputBit = (int)Char.GetNumericValue(temp[1]);
+            int InputByte = InputData[adress];
+
+            if (value.IsChecked == true)
+                editBit = 1;
+            else
+                editBit = 0;
+
+            var bits = Convert.ToString(InputByte, 2);
+            while (bits.Length < 8)
+                bits = bits.Insert(0, "0");
+            bits = ReverseString(bits);
+            bits = bits.Remove(InputBit, 1);
+            bits = bits.Insert(InputBit, editBit.ToString());
+            bits = ReverseString(bits);
+
+            var byteToSave = Convert.ToByte(bits, 2);
+            InputData[adress] = byteToSave;
+            //this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            //(ThreadStart)delegate ()
+            //{
+            //    Output1Byte(OutputData[0]);
+            //    Output2Byte(OutputData[1]);
+            //    Output3Byte(OutputData[2]);
+            //}
+            //);
+        }
     }
 }
