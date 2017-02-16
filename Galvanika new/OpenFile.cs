@@ -161,7 +161,7 @@ namespace Galvanika_new
                             if (stringData.Contains("FP"))
                                 MainWindow.FrontP.Add(countKey.ToString(), 0);
                             if (stringData.Contains("FN"))
-                                MainWindow.FrontN.Add(countKey.ToString(), 1);
+                                MainWindow.FrontN.Add(countKey.ToString(), 0);
                         }
                         else if (stringData.Count == 2)
                         {

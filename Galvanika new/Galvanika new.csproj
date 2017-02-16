@@ -59,7 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Brain.cs" />
     <Compile Include="OpenFile.cs" />
     <Compile Include="TableData.cs" />
     <Page Include="MainWindow.xaml">

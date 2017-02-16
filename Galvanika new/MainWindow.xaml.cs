@@ -46,11 +46,8 @@ namespace Galvanika_new
         public static Dictionary<string, int> FrontP = new Dictionary<string, int>();
         public static Dictionary<string, int> FrontN = new Dictionary<string, int>();
 
-        // Brain brain = new Brain();
-
         private Processor processor = new Processor();
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
-        private DispatcherTimer timerForTimer;
         #endregion
         public MainWindow()
         {
@@ -66,17 +63,16 @@ namespace Galvanika_new
             dataGrid.ItemsSource = DataGridTable;
             timerGrid.ItemsSource = TimerGridTable;
 
+            DispatcherTimer timerForTimer = new DispatcherTimer();
+
+            timerForTimer.Tick += new EventHandler(timer_Tick);
+            timerForTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timerForTimer.Start();
+
             backgroundWorker.DoWork += backgroundWorker_DoWork;
             backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.RunWorkerAsync();
-
-            timerForTimer = new DispatcherTimer();
-            timerForTimer.Tick += new EventHandler(timerForTimer_Tick);
-            timerForTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timerForTimer.Start();
-
-            //chWindow.Show();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -84,8 +80,8 @@ namespace Galvanika_new
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            readsCount++;
-            reads.Content = readsCount;
+            //readsCount++;
+            //reads.Content = readsCount;
             backgroundWorker.RunWorkerAsync();
         }
 
@@ -232,6 +228,8 @@ namespace Galvanika_new
                                 {
                                     if (temp == true) //Обнуляем таймер если SА тут обнуление это 1
                                     {
+                                        i = item.Value + 1;
+
                                         if (!TimerSA.Keys.Contains(valueNext.Bit.ToString()))
                                         {
                                             var tempTimerData = timerData.Split('#');
@@ -262,16 +260,17 @@ namespace Galvanika_new
                                                 containsTimer.Value = 1;
                                             }
                                         }
-                                        break;
+                                        //else
+                                            //break;
                                     }
                                     else
                                     {
-                                        if (TimerSA.Keys.Contains(valueNext.Bit.ToString()))
+                                        if (TimerSA.Keys.Contains(valueNext.Bit.ToString()) && !TimerSE.Keys.Contains(valueNext.Bit.ToString()))
                                         {
                                             //Т.к. SA запускается если с 1 стало 0, то мы из таймеров SA должны скопировать в таймеры SE, и потом проверять когда кончится время, то удалить из таймеров SE 
                                             TimerSE.Add(valueNext.Bit, TimerSA[valueNext.Bit]);
                                         }
-                                        break;
+                                        //break;
                                     }
                                 }
                             }
@@ -296,6 +295,7 @@ namespace Galvanika_new
                                 output += "true";
                             else
                                 output += "false";
+                            //break;
                         }
                         else if (value.Operator.Contains("<>"))
                         {
@@ -303,6 +303,7 @@ namespace Galvanika_new
                                 output += "true";
                             else
                                 output += "false";
+                            //break;
                         }
                         else if (value.Operator.Contains("<"))
                         {
@@ -310,6 +311,7 @@ namespace Galvanika_new
                                 output += "true";
                             else
                                 output += "false";
+                            //break;
                         }
                         else if (value.Operator.Contains(">"))
                         {
@@ -317,6 +319,7 @@ namespace Galvanika_new
                                 output += "true";
                             else
                                 output += "false";
+                            //break;
                         }
                         else if (value.Operator.Contains("+"))
                         {
@@ -386,34 +389,48 @@ namespace Galvanika_new
                                 {
                                     FrontP[value.Key.ToString()] = 1;
                                     DataWrite(value, "true");
+                                    //break;
+                                }
+                                else
+                                {
+                                    DataWrite(value, "false");
+                                    if (FrontP[value.Key.ToString()] == 1)
+                                        FrontP[value.Key.ToString()] = 0;
                                     break;
                                 }
-                                DataWrite(value, "false");
-                                if (FrontP[value.Key.ToString()] == 1)
-                                    FrontP[value.Key.ToString()] = 0;
                             }
-                            //Перескакиваем в конец
-                            i = item.Value + 1;
-                            break;
+                            else
+                                //Перескакиваем в конец
+                                //i = item.Value + 1;
+                                break;
                         }
                         else if (value.Operator.Contains("FN"))
                         {
                             var tempValue = processor.Solve<BooleanResult>(output).Result;
                             if (Convert.ToInt32(tempValue) != FrontN[value.Key.ToString()])
                             {
-                                if (FrontN[value.Key.ToString()] == 1)
+                                if (Convert.ToInt32(tempValue)==1)
+                                //if (FrontN[value.Key.ToString()] == 0)
                                 {
-                                    FrontN[value.Key.ToString()] = 0;
-                                    DataWrite(value, "false");
+                                    FrontN[value.Key.ToString()] = 1;
+                                    //DataWrite(value, "true");
                                     break;
                                 }
-                                DataWrite(value, "true");
-                                if (FrontN[value.Key.ToString()] == 0)
-                                    FrontN[value.Key.ToString()] = 1;
+                                else
+                                {
+                                    //DataWrite(value, "false");
+                                    if (FrontN[value.Key.ToString()] == 1)
+                                    {
+                                        DataWrite(value, "true");
+                                        FrontN[value.Key.ToString()] = 0;
+                                        output = "";
+                                    }
+                                }
                             }
-                            //Перескакиваем в конец
-                            i = item.Value + 1;
-                            break;
+                            else
+                                //Перескакиваем в конец
+                                //i = item.Value + 1;
+                                break;
                         }
                         else
                         {
@@ -737,7 +754,7 @@ namespace Galvanika_new
             else if (!string.IsNullOrEmpty(value.AEM) && value.AEM.Contains("A"))
             {
                 valueBool = DataRead(value.Bit, "output");
-                value.Input = Convert.ToInt32(valueBool).ToString();
+                value.Output = Convert.ToInt32(valueBool).ToString(); //Стоял input
             }
             else if (!string.IsNullOrEmpty(value.AEM) && value.AEM.Contains("DB"))
             {
@@ -790,8 +807,11 @@ namespace Galvanika_new
 
             return valueBool.ToString();
         }
-        private void timerForTimer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
+            readsCount++;
+            reads.Content = readsCount;
+
             foreach (var item in TimerSE)
             {
                 var value = TimerGridTable.Where(u => u.Address == item.Key).SingleOrDefault();
@@ -818,8 +838,6 @@ namespace Galvanika_new
             }
             );
         }
-        #endregion
-
         private void Output1Byte(int value)
         {
             var tempBits = Convert.ToString(value, 2);
@@ -934,14 +952,13 @@ namespace Galvanika_new
             else
                 Output3Bit7.IsChecked = false;
         }
-
         private void InputBit_Checked(object sender, RoutedEventArgs e)
         {
             var value = sender as CheckBox;
             int editBit;
             var temp = value.Name.Replace("Input", "");
             temp = temp.Replace("Bit", "");
-            var adress = (int)Char.GetNumericValue(temp[0])-1;
+            var adress = (int)Char.GetNumericValue(temp[0]) - 1;
             int InputBit = (int)Char.GetNumericValue(temp[1]);
             int InputByte = InputData[adress];
 
@@ -960,14 +977,7 @@ namespace Galvanika_new
 
             var byteToSave = Convert.ToByte(bits, 2);
             InputData[adress] = byteToSave;
-            //this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-            //(ThreadStart)delegate ()
-            //{
-            //    Output1Byte(OutputData[0]);
-            //    Output2Byte(OutputData[1]);
-            //    Output3Byte(OutputData[2]);
-            //}
-            //);
         }
+        #endregion
     }
 }
