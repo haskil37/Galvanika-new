@@ -48,6 +48,9 @@ namespace Galvanika_new
 
         private Processor processor = new Processor();
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
+
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
         #endregion
         public MainWindow()
         {
@@ -63,8 +66,12 @@ namespace Galvanika_new
             dataGrid.ItemsSource = DataGridTable;
             timerGrid.ItemsSource = TimerGridTable;
 
-            DispatcherTimer timerForTimer = new DispatcherTimer();
 
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
+            dispatcherTimer.Start();
+
+            DispatcherTimer timerForTimer = new DispatcherTimer();
             timerForTimer.Tick += new EventHandler(timer_Tick);
             timerForTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             timerForTimer.Start();
@@ -72,7 +79,11 @@ namespace Galvanika_new
             backgroundWorker.DoWork += backgroundWorker_DoWork;
             backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
             backgroundWorker.WorkerSupportsCancellation = true;
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
             backgroundWorker.RunWorkerAsync();
+            dispatcherTimer.Stop();
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -80,8 +91,8 @@ namespace Galvanika_new
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //readsCount++;
-            //reads.Content = readsCount;
+            readsCount++;
+            reads.Content = readsCount;
             backgroundWorker.RunWorkerAsync();
         }
 
@@ -444,12 +455,50 @@ namespace Galvanika_new
                     }
                 }
             }
+            if (!backgroundWorker.IsBusy)
+                backgroundWorker.RunWorkerAsync();
+
             this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
             (ThreadStart)delegate ()
             {
                 dataGrid.Items.Refresh();
             }
             );
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var item in TimerSE)
+                {
+                    var value = TimerGridTable.Where(u => u.Address == item.Key).SingleOrDefault();
+                    if (value.Time < value.EndTime && value.Value != 1)
+                        value.Time += 100;
+                    else
+                    {
+                        if (!TimerSA.Keys.Contains(item.Key))
+                            value.Value = 1; //Для SE таймера
+                        else
+                        {
+                            TimerSE.Remove(item.Key);
+                            TimerSA.Remove(item.Key);
+                            value.Value = 0; //Для SA таймера
+                        }
+                        value.Time = 0;
+                    }
+                }
+
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    timerGrid.Items.Refresh();
+                }
+                );
+            }
+            catch
+            {
+                return;
+            }
         }
         #region Вспомогательные функции
         private void showDBTimer(object sender, RoutedEventArgs e)
@@ -806,37 +855,6 @@ namespace Galvanika_new
                 valueBool = processor.Solve<BooleanResult>("~" + valueBool).Result;
 
             return valueBool.ToString();
-        }
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            readsCount++;
-            reads.Content = readsCount;
-
-            foreach (var item in TimerSE)
-            {
-                var value = TimerGridTable.Where(u => u.Address == item.Key).SingleOrDefault();
-                if (value.Time < value.EndTime && value.Value != 1)
-                    value.Time += 100;
-                else
-                {
-                    if (!TimerSA.Keys.Contains(item.Key))
-                        value.Value = 1; //Для SE таймера
-                    else
-                    {
-                        TimerSE.Remove(item.Key);
-                        TimerSA.Remove(item.Key);
-                        value.Value = 0; //Для SA таймера
-                    }
-                    value.Time = 0;
-                }
-            }
-
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-            (ThreadStart)delegate ()
-            {
-                timerGrid.Items.Refresh();
-            }
-            );
         }
         private void Output1Byte(int value)
         {
