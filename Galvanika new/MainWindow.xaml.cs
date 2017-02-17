@@ -120,7 +120,7 @@ namespace Galvanika_new
                     }
                     else //Cчитываем дальше
                     {
-                        if (i == 1491)
+                        if (i == 11)
                         { }
                         string thisOperator = "";
                         if (value.Operator.Contains(")"))
@@ -188,6 +188,8 @@ namespace Galvanika_new
                                 ProgramData valueNext = DataGridTable[i + 1] as ProgramData;
                                 if (valueNext.Operator.Contains("SE"))
                                 {
+                                    i = item.Value + 1;
+
                                     if (temp == false) //Обнуляем таймер если SE 
                                     {
                                         if (TimerSE.Keys.Contains(valueNext.Bit.ToString()))
@@ -195,13 +197,14 @@ namespace Galvanika_new
                                             TimerSE.Remove(valueNext.Bit.ToString());
                                             MyTimers valueTime = TimerGridTable.Where(u => u.Address == valueNext.Bit).SingleOrDefault() as MyTimers;
                                             valueTime.Time = 0;
-                                            valueTime.EndTime = 0;
+                                            //valueTime.EndTime = 0;
                                             valueTime.Value = 0;
                                         }
-                                        break;
+                                        //break;
                                     }
                                     else //Создаем новый таймер если SE 
                                     {
+
                                         if (!TimerSE.Keys.Contains(valueNext.Bit.ToString()))
                                         {
                                             var tempTimerData = timerData.Split('#');
@@ -232,14 +235,22 @@ namespace Galvanika_new
                                                 containsTimer.Value = 0;
                                             }
                                         }
-                                        break;
+                                        else
+                                        {
+                                            //var containsTimer = TimerGridTable.Where(u => u.Address == valueNext.Bit).SingleOrDefault();
+                                            //if (containsTimer != null && containsTimer.Value ==1)
+                                            //    TimerSE.Remove(valueNext.Bit.ToString());
+
+                                            //break;
+                                        }
                                     }
                                 }
                                 else if (valueNext.Operator.Contains("SA")) //если SA то наоборот запускаем
                                 {
+                                    i = item.Value + 1;
+
                                     if (temp == true) //Обнуляем таймер если SА тут обнуление это 1
                                     {
-                                        i = item.Value + 1;
 
                                         if (!TimerSA.Keys.Contains(valueNext.Bit.ToString()))
                                         {
@@ -261,25 +272,36 @@ namespace Galvanika_new
                                             var containsTimer = TimerGridTable.Where(u => u.Address == valueNext.Bit).SingleOrDefault();
                                             if (containsTimer == null)
                                             {
-                                                MyTimers valueTime = new MyTimers(valueNext.Bit, 0, newTempTime, 1);
+                                                MyTimers valueTime = new MyTimers(valueNext.Bit, -1, newTempTime, 1);
                                                 TimerGridTable.Add(valueTime);
                                             }
                                             else
                                             {
                                                 containsTimer.EndTime = newTempTime;
-                                                containsTimer.Time = 0;
+                                                containsTimer.Time = -1;
                                                 containsTimer.Value = 1;
                                             }
                                         }
-                                        //else
-                                            //break;
+                                        else
+                                        {
+                                            var containsTimer = TimerGridTable.Where(u => u.Address == valueNext.Bit).SingleOrDefault();
+                                            if (containsTimer != null)
+                                            {
+                                                containsTimer.Time = -1;
+                                                containsTimer.Value = 1;
+                                            }
+
+                                        }
+                                        //break;
                                     }
                                     else
                                     {
-                                        if (TimerSA.Keys.Contains(valueNext.Bit.ToString()) && !TimerSE.Keys.Contains(valueNext.Bit.ToString()))
+                                        if (TimerSA.Keys.Contains(valueNext.Bit.ToString()))
                                         {
-                                            //Т.к. SA запускается если с 1 стало 0, то мы из таймеров SA должны скопировать в таймеры SE, и потом проверять когда кончится время, то удалить из таймеров SE 
-                                            TimerSE.Add(valueNext.Bit, TimerSA[valueNext.Bit]);
+                                            var containsTimer = TimerGridTable.Where(u => u.Address == valueNext.Bit).SingleOrDefault();
+                                            if (containsTimer.Time == -1)
+                                                containsTimer.Time = 0;//Т.к. SA запускается если с 1 стало 0, то мы из таймеров SA должны скопировать в таймеры SE, и потом проверять когда кончится время, то удалить из таймеров SE 
+                                           // TimerSE.Add(valueNext.Bit, TimerSA[valueNext.Bit]);
                                         }
                                         //break;
                                     }
@@ -297,7 +319,8 @@ namespace Galvanika_new
                                     break;
                             }
                             var currentInt = ValueBool(value);
-                            compareValues.Add(Convert.ToInt32(currentInt));
+                            if (currentInt != "-1")
+                                compareValues.Add(Convert.ToInt32(currentInt));
                         }
 
                         if (value.Operator.Contains("=="))
@@ -450,7 +473,9 @@ namespace Galvanika_new
                                     if (!value.Operator.Contains("L"))
                                         if (!value.Operator.Contains("="))
                                             if (!value.Operator.Contains("<>"))
-                                                output += ValueBool(value);
+                                                if (!value.Operator.Contains("<"))
+                                                    if (!value.Operator.Contains(">"))
+                                                        output += ValueBool(value);
                         }
                     }
                 }
@@ -476,18 +501,32 @@ namespace Galvanika_new
                         value.Time += 100;
                     else
                     {
-                        if (!TimerSA.Keys.Contains(item.Key))
+                        //if (!TimerSA.Keys.Contains(item.Key))
                             value.Value = 1; //Для SE таймера
-                        else
-                        {
-                            TimerSE.Remove(item.Key);
-                            TimerSA.Remove(item.Key);
-                            value.Value = 0; //Для SA таймера
-                        }
+                        //else
+                        //{
+                        //    TimerSA.Remove(item.Key);
+                        //    value.Value = 0; //Для SA таймера
+                        //}
                         value.Time = 0;
+                        //TimerSE.Remove(item.Key);
+                        //break;
                     }
                 }
+                foreach (var item in TimerSA)
+                {
+                    var value = TimerGridTable.Where(u => u.Address == item.Key).SingleOrDefault();
+                    if (value.Time < value.EndTime && value.Time != -1 && value.Value != 0)
+                        value.Time += 100;
+                    else if (value.Time == value.EndTime)
+                    {
 
+                        value.Value = 0; //Для SA таймера
+
+                        value.Time = 0;
+                        TimerSA.Remove(item.Key);
+                    }
+                }
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
@@ -495,7 +534,7 @@ namespace Galvanika_new
                 }
                 );
             }
-            catch
+            catch 
             {
                 return;
             }
@@ -831,6 +870,8 @@ namespace Galvanika_new
                 {
                     if (!tempValue.Contains("s5t")) // Если не таймер то числа
                         return tempValue;
+                    else
+                        return "-1";
                 }
                 value.Input = Convert.ToInt32(valueBool).ToString();
             }
