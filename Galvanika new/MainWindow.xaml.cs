@@ -116,17 +116,33 @@ namespace Galvanika_new
                             output += doubleBKT;
                             doubleBKT = "";
                         }
+
+                        if (string.IsNullOrEmpty(output))
+                            output = "false";
+
                         DataWrite(value, output);
                     }
                     else //Cчитываем дальше
                     {
-                        if (i == 11)
+                        if (i == 170)
                         { }
                         string thisOperator = "";
                         if (value.Operator.Contains(")"))
                         {
-                            output += ") " + doubleBKT;
-                            doubleBKT = "";
+                            if (output.Trim().LastOrDefault() != '(')
+                            {
+                                output += ") " + doubleBKT;
+                                doubleBKT = "";
+                            }
+                            else
+                            {
+                                var temp = output.Trim();
+                                temp = temp.Remove(temp.Length - 1, 1);
+                                temp = temp.Trim();
+
+                                temp = temp.Substring(0, temp.LastIndexOf(' '));
+                                output = temp;
+                            }
                         }
                         else if (value.Operator.Contains("U"))
                         {
@@ -180,6 +196,9 @@ namespace Galvanika_new
                             }
                             if (value.AEM.Contains("S5T") || timerData.Contains("s5t") || timerFromDB == 1) //Если таймер
                             {
+                                if (i == 2793)
+                                { }
+
                                 if (timerData == "0")
                                 {
                                     timerData = value.AEM.ToLower();
@@ -188,7 +207,7 @@ namespace Galvanika_new
                                 ProgramData valueNext = DataGridTable[i + 1] as ProgramData;
                                 if (valueNext.Operator.Contains("SE"))
                                 {
-                                    i = item.Value + 1;
+                                    i = i + 1;
 
                                     if (temp == false) //Обнуляем таймер если SE 
                                     {
@@ -204,7 +223,8 @@ namespace Galvanika_new
                                     }
                                     else //Создаем новый таймер если SE 
                                     {
-
+                                        if(valueNext.Bit=="4")
+                                        { }
                                         if (!TimerSE.Keys.Contains(valueNext.Bit.ToString()))
                                         {
                                             var tempTimerData = timerData.Split('#');
@@ -247,7 +267,7 @@ namespace Galvanika_new
                                 }
                                 else if (valueNext.Operator.Contains("SA")) //если SA то наоборот запускаем
                                 {
-                                    i = item.Value + 1;
+                                    i = i + 1;
 
                                     if (temp == true) //Обнуляем таймер если SА тут обнуление это 1
                                     {
@@ -312,14 +332,18 @@ namespace Galvanika_new
                                 var temp = output.Trim();
                                 temp = temp.Remove(temp.Length - 1, 1);
                                 temp = temp.Trim();
-                                temp = temp.Substring(0, temp.LastIndexOf(' '));
+                                if (!string.IsNullOrEmpty(temp))
+                                {
+                                    temp = temp.Substring(0, temp.LastIndexOf(' '));
 
-                                var tempValue = processor.Solve<BooleanResult>(temp).Result;
-                                if (tempValue == false)
-                                    break;
+                                    var tempValue = processor.Solve<BooleanResult>(temp).Result;
+                                    if (tempValue == false)
+                                        i = i +2;
+                                        //break;
+                                }
                             }
                             var currentInt = ValueBool(value);
-                            if (currentInt != "-1")
+                            if (!currentInt.ToLower().Contains("s5t"))
                                 compareValues.Add(Convert.ToInt32(currentInt));
                         }
 
@@ -367,28 +391,55 @@ namespace Galvanika_new
                         }
                         if (value.Operator.Contains("T"))
                         {
+                            if (DB[value.Bit] == "18")
+                            { }
+
                             DB[value.Bit] = compareValues[0].ToString();
                         }
 
                         if (value.Operator.Contains("SPBNB")) //Типа goto
                         {
-                            var tempValue = processor.Solve<BooleanResult>(output).Result;
+                            bool tempValue;
+                            if (!string.IsNullOrEmpty(output))
+                                tempValue = processor.Solve<BooleanResult>(output).Result;
+                            else
+                                tempValue = false;
+
                             if (tempValue) //если перед нами 1 то идем сюда
                             {
                                 ProgramData valueNext = DataGridTable[i + 1] as ProgramData;
+                                if(valueNext.Key==2293)
+                                { }
                                 var valueToNext = ValueBool(valueNext);
                                 ProgramData valueNext2 = DataGridTable[i + 2] as ProgramData;
                                 var memory = MemoryGridTable.Find(u => u.Address == valueNext2.Bit);
                                 memory.CurrentValue = valueToNext.ToUpper();
-                            }
-                            //если нет, то перескакиваем две строки 
-                            i = i + 2;
-                            break;
-                        }
+                                DB[valueNext2.Bit] = memory.CurrentValue;
 
-                        if (value.Operator.Contains("S"))
+                                if (memory.CurrentValue == "-1")
+                                { }
+                            }
+                            //если нет, то перескакиваем. считаем сколько перескачить
+                            int count = 0;
+                            for (int j = i; j <= item.Value; j++)
+                            {
+                                count++;
+                                ProgramData valueNext = DataGridTable[j + 1] as ProgramData;
+                                if (valueNext.Operator == value.AEM + ":")
+                                {
+                                    i = i + count;
+                                    break;
+                                }
+                            }
+                            //break;
+                        }
+                        else if (value.Operator.Contains("S"))
                         {
-                            var tempValue = processor.Solve<BooleanResult>(output).Result;
+                            bool tempValue;
+                            if (!string.IsNullOrEmpty(output))
+                                tempValue = processor.Solve<BooleanResult>(output).Result;
+                            else
+                                tempValue = false;
                             if (tempValue)
                                 DataWrite(value, "true");
                             else
@@ -402,7 +453,11 @@ namespace Galvanika_new
                         }
                         else if (value.Operator.Contains("R"))
                         {
-                            var tempValue = processor.Solve<BooleanResult>(output).Result;
+                            bool tempValue;
+                            if (!string.IsNullOrEmpty(output))
+                                tempValue = processor.Solve<BooleanResult>(output).Result;
+                            else
+                                tempValue = false;
                             if (tempValue)
                                 DataWrite(value, "false");
                             else
@@ -430,25 +485,62 @@ namespace Galvanika_new
                                     DataWrite(value, "false");
                                     if (FrontP[value.Key.ToString()] == 1)
                                         FrontP[value.Key.ToString()] = 0;
-                                    break;
+                                    //break;
+                                    output = "";
+                                    int count = 0;
+                                    for (int j = i; j <= item.Value; j++)
+                                    {
+                                        count++;
+                                        ProgramData valueNext = DataGridTable[j + 1] as ProgramData;
+                                        if (valueNext.Operator == "SPBNB" || valueNext.Operator == "S" || valueNext.Operator == "R" || valueNext.Operator == "=")
+                                        {
+                                            i = i + count - 1; //чтоб в нее зашло
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                             else
-                                //Перескакиваем в конец
-                                //i = item.Value + 1;
-                                break;
+                            {      //Перескакиваем фронт
+                                output = "";
+                                int count = 0;
+                                for (int j = i; j <= item.Value; j++)
+                                {
+                                    count++;
+                                    ProgramData valueNext = DataGridTable[j + 1] as ProgramData;
+                                    if (valueNext.Operator == "SPBNB" || valueNext.Operator == "S" || valueNext.Operator == "R" || valueNext.Operator == "=")
+                                    {
+                                        i = i + count - 1; //чтоб в нее зашло
+                                        break;
+                                    }
+                                }
+                                //i = i + 1;
+                                //break;
+                            }
                         }
                         else if (value.Operator.Contains("FN"))
                         {
                             var tempValue = processor.Solve<BooleanResult>(output).Result;
                             if (Convert.ToInt32(tempValue) != FrontN[value.Key.ToString()])
                             {
-                                if (Convert.ToInt32(tempValue)==1)
+                                if (Convert.ToInt32(tempValue) == 1)
                                 //if (FrontN[value.Key.ToString()] == 0)
                                 {
                                     FrontN[value.Key.ToString()] = 1;
                                     //DataWrite(value, "true");
-                                    break;
+                                    //break;
+                                    output = "";
+                                    int count = 0;
+                                    for (int j = i; j <= item.Value; j++)
+                                    {
+                                        count++;
+                                        ProgramData valueNext = DataGridTable[j + 1] as ProgramData;
+                                        if (valueNext.Operator == "SPBNB" || valueNext.Operator == "S" || valueNext.Operator == "R" || valueNext.Operator == "=")
+                                        {
+                                            i = i + count - 1; //чтоб в нее зашло
+                                            break;
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -462,9 +554,22 @@ namespace Galvanika_new
                                 }
                             }
                             else
-                                //Перескакиваем в конец
-                                //i = item.Value + 1;
-                                break;
+                            //Перескакиваем в конец
+                            {
+                                output = "";
+                                int count = 0;
+                                for (int j = i; j <= item.Value; j++)
+                                {
+                                    count++;
+                                    ProgramData valueNext = DataGridTable[j + 1] as ProgramData;
+                                    if (valueNext.Operator == "SPBNB" || valueNext.Operator == "S" || valueNext.Operator == "R" || valueNext.Operator == "=")
+                                    {
+                                        i = i + count - 1; //чтоб в нее зашло
+                                        break;
+                                    }
+                                }
+                            }
+                                //break;
                         }
                         else
                         {
@@ -695,7 +800,13 @@ namespace Galvanika_new
             {
                 //Проверяем есть ли такое значение адреса в БД, если нет то это младший байт числа в другом адресе
                 if (DB.ContainsKey(value.Bit))
+                {
+                    if (DB[value.Bit] == "18")
+                    { }
+
                     DB[value.Bit] = valueBool.ToString(); //Записываем пока только булевые
+
+                }
                 else
                 {
                     var split = value.Bit.Split('.');
@@ -711,6 +822,8 @@ namespace Galvanika_new
                     DB[olderByte.ToString()] = valueOlderByte;
                     var memory2 = MemoryGridTable.Find(u => u.Address == olderByte.ToString());
                     memory2.CurrentValue = valueOlderByte.ToLower();
+                    if (memory2.CurrentValue == "-1")
+                    { }
                     return true;
                 }
                 value.Output = Convert.ToInt32(valueBool).ToString();
@@ -728,7 +841,8 @@ namespace Galvanika_new
                     tempBits = ReverseString(tempBits);
                     memory.CurrentValue = Convert.ToByte(tempBits, 2).ToString();
                     DB[tempAddress[0]] = memory.CurrentValue;
-                    //memory.Value = memory.CurrentValue;
+                    if (memory.CurrentValue == "-1")
+                    { }//memory.Value = memory.CurrentValue;
                     this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                     (ThreadStart)delegate ()
                     {
@@ -738,6 +852,7 @@ namespace Galvanika_new
                     return true;
                 }
                 memory.CurrentValue = valueBool.ToString().ToLower();
+                DB[value.Bit] = memory.CurrentValue;
                 return true;
             }
 
@@ -848,7 +963,9 @@ namespace Galvanika_new
             {
                 string tempValue;
                 if (DB.ContainsKey(value.Bit))
+                {
                     tempValue = DB[value.Bit].ToLower();
+                }
                 else
                 {
                     var split = value.Bit.Split('.');
@@ -868,10 +985,10 @@ namespace Galvanika_new
                     valueBool = Convert.ToBoolean(tempValue);
                 else
                 {
-                    if (!tempValue.Contains("s5t")) // Если не таймер то числа
+                    //if (!tempValue.Contains("s5t")) // Если не таймер то числа
                         return tempValue;
-                    else
-                        return "-1";
+                    //else
+                       // return "-1";
                 }
                 value.Input = Convert.ToInt32(valueBool).ToString();
             }
@@ -902,6 +1019,7 @@ namespace Galvanika_new
             var tempBits = Convert.ToString(value, 2);
             while (tempBits.Length < 8)
                 tempBits = tempBits.Insert(0, "0");
+            tempBits = ReverseString(tempBits);
             if (tempBits[0] != '0')
                 Output1Bit0.IsChecked = true;
             else
@@ -940,6 +1058,7 @@ namespace Galvanika_new
             var tempBits = Convert.ToString(value, 2);
             while (tempBits.Length < 8)
                 tempBits = tempBits.Insert(0, "0");
+            tempBits = ReverseString(tempBits);
             if (tempBits[0] != '0')
                 Output2Bit0.IsChecked = true;
             else
@@ -978,6 +1097,7 @@ namespace Galvanika_new
             var tempBits = Convert.ToString(value, 2);
             while (tempBits.Length < 8)
                 tempBits = tempBits.Insert(0, "0");
+            tempBits = ReverseString(tempBits);
             if (tempBits[0] != '0')
                 Output3Bit0.IsChecked = true;
             else

@@ -223,7 +223,6 @@
         <Button x:Name="button_DB" Content="Показать память" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="107" Click="showDBTimer" />
         <Button x:Name="button_Timer" Content="Показать таймеры" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top" Width="110" Click="showDBTimer" />
         <Button x:Name="button_testWindow" Content="Показать" HorizontalAlignment="Left" Margin="241,10,0,0" VerticalAlignment="Top" Width="110" Click="showDBTimer" />
-        <Label Content="Количество прогонов:" Margin="0,4,124,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <Label x:Name="reads"  Margin="0,4,26,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
     </Grid>    
 </Window>
